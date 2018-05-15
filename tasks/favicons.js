@@ -504,7 +504,9 @@ module.exports = function(grunt) {
                 // Cleanup
                 if (options.regular) {
                     ['16x16', '32x32', '48x48'].forEach(function(size) {
-                        fs.unlink(path.join(f.dest, size + '.png'));
+                        fs.unlink(path.join(f.dest, size + '.png'), function(error) {
+                          grunt.fail.warn(error);
+                        });
                     });
                 }
 
